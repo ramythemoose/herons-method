@@ -3,7 +3,6 @@ import numpy as np
 import tabulate as tabulate
 import pandas as pd
 
-
 np.set_printoptions(legacy='1.25') #stops the annoying npfloat64 output for printing floats in a list
 
 def herostheorem(xn, k):
@@ -42,13 +41,17 @@ def plottingfunc(xn_range, k_range, xn_intervals,
     for i in xn: #loop over xn list
         for j in k: #loop over k list
             n_list, results_list = herostheorem(i, j) #calculate heros theorem for each value of xn over a range of k values
-            plt.plot(n_list, results_list) #plot convergence steps against values for xn+1
+            plt.plot(n_list, results_list, marker='o', ms = 2) #plot convergence steps against values for x0
             print(n_list, results_list)
             print(i, j)
             
 
     interface_txt = f"Plotting: \nk: {k_start} -> {k_range} in steps of {k_intervals} \nxn: {xn_start} -> {xn_range} in steps of {xn_intervals}"
     print(interface_txt, end='')
+
+    plt.xlabel("Convergence steps")
+    plt.ylabel("Values of x0")
+    plt.title("Convergence steps for each x0")
     plt.show()
 
 def plot_varxn_fixedk(xn_start, xn_range, xn_intervals, k):
@@ -94,8 +97,10 @@ def plot_fixedxn_fixedk(xn, k):
 #herostheorem(10.3, 99.9)
 #plot_varxn_fixedk(0, 10, 2, k=100)
 #plot_fixedxn_vark(0, 10, 2, xn=100)
-#plot_varxn_vark(0, 100, 10, 0, 100, 10)
+plot_varxn_vark(0, 100, 10, 0, 100, 10)
 #plot_fixedxn_fixedk(8, 100)
+    
+
 
 
 
